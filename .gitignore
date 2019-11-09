@@ -1,0 +1,6 @@
+myvenv
+myvenv/
+.vscode
+.vscode/
+.env
+db.sqlite3
