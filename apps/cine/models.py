@@ -86,29 +86,9 @@ class Actor(models.Model):
     def __str__(self):
         return (self.nombre)
 
-
-
-class Usuario(models.Model):
-    id = models.AutoField(primary_key = True)
-    nombre = models.CharField(max_length=220, blank=True, null=True)
-    apellidos = models.CharField(max_length=220, blank=True, null=True)
-    username = models.CharField(max_length=10, blank=True, null=True)
-    password = models.CharField(max_length=10, blank=True, null=True)
-    
-    
-    class Meta:
-        verbose_name = 'Usuario'
-        verbose_name_plural = 'Usuarios'
-        ordering = ['nombre']
-
-    def __str__(self):
-        #cadena = "{0} => {1}"
-        return (self.nombre)
-
-
 class Venta(models.Model):
-    id = models.AutoField(primary_key = True)
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key = True)    
+    id_usuario = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     id_funcion = models.ForeignKey(Funcion, null=False, blank=False, on_delete=models.CASCADE)
     cantidad = models.IntegerField(null = False)
     fecha_venta = models.DateTimeField (
