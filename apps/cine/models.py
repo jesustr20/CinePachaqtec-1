@@ -6,10 +6,10 @@ class Local(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=200, blank=False, null=False)
     direccion = models.CharField(max_length=220, blank=False, null=False)
-    tiposervicio = models.CharField(max_length=200, blank=False, null=False)
+    tiposervicio = models.CharField('Tipo de Servicio',max_length=200, blank=False, null=False)
     precio = models.DecimalField(max_digits=10, decimal_places = 2)
     distrito = models.CharField(max_length=220, blank=False)
-    imagen = models.ImageField(upload_to="pictures/%y", null=True)
+    imagen = models.ImageField(upload_to="pictures/local/%d", null=True)
 
     class Meta:
         verbose_name = 'Local'
@@ -29,8 +29,8 @@ class Pelicula(models.Model):
     genero= models.CharField(max_length=220, blank=False, null=False)
     duracion= models.CharField(max_length=220, blank=False, null=False)
     categoria= models.CharField(max_length=220, blank=False, null=False)
-    imagen= models.ImageField(upload_to="pictures/%y", null=True)
-    psinosis = models.CharField(max_length=220, blank=False, null=True)
+    imagen= models.ImageField(upload_to="pictures/pelicula/%d", null=True)
+    sinopsis = models.CharField(max_length=220, blank=False, null=True)
     director = models.CharField(max_length=220, blank=False, null = True)
     idioma = models.CharField(max_length=220, blank=False, null=True)
 
@@ -55,7 +55,7 @@ class Sala(models.Model):
     def __str__(self):
         return self.nombre
 
-
+#MAGALY
 class Funcion (models.Model):
     id = models.AutoField(primary_key = True)
     id_local = models.ForeignKey(Local,on_delete=models.CASCADE)
@@ -75,7 +75,7 @@ class Actor(models.Model):
     id = models.AutoField(primary_key = True)
     id_pelicula= models.ManyToManyField(Pelicula)
     nombre = models.CharField(max_length=220, blank=True, null=True)
-    imagen = models.ImageField(upload_to="pictures/%y", null=True)
+    imagen = models.ImageField(upload_to="pictures/actor/%d", null=True)
 
     
     class Meta:
@@ -84,6 +84,24 @@ class Actor(models.Model):
         ordering = ['nombre']
 
     def __str__(self):
+        return (self.nombre)
+
+#GARY
+class Usuario(models.Model):
+    id = models.AutoField(primary_key = True)
+    nombre = models.CharField(max_length=220, blank=True, null=True)
+    apellidos = models.CharField(max_length=220, blank=True, null=True)
+    username = models.CharField(max_length=10, blank=True, null=True)
+    password = models.CharField(max_length=10, blank=True, null=True)
+    
+    
+    class Meta:
+        verbose_name = 'Usuario'
+        verbose_name_plural = 'Usuarios'
+        ordering = ['nombre']
+
+    def __str__(self):
+        #cadena = "{0} => {1}"
         return (self.nombre)
 
 class Venta(models.Model):

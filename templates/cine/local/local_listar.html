@@ -1,0 +1,49 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}
+    Listar Locales
+{% endblock %}
+
+{% block content %}
+    <h1>Locales</h1>
+    <div class="row">
+        <div class="col">
+            <h3 class="one">&nbsp;</h3>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Local Nro</th>
+            <th>Local</th>
+            <th>Direccion</th>
+            <th>Tipo de Servicio</th>
+            <th>Distrito</th>
+            <th>Local</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for local in locales %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ local.nombre }}</td>
+                <td>{{ local.direccion }}</td>
+                <td>{{ local.tiposervicio }}</td>
+                <td>{{ local.distrito }}</td>
+                <td>
+                    <a href="http://127.0.0.1:8000/pictures/{{ local.imagen }}" target="_blank"><img src="http://127.0.0.1:8000/pictures/{{ local.imagen }}" width="50px" height="50px"></a>
+                </td>
+                <td>
+                     
+
+                </td>
+                
+            </tr>
+            
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    <a class="btn btn-primary" href="/">Inicio</a>
+    
+{% endblock %}

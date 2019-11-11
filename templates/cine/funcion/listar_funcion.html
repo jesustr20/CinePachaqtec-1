@@ -1,0 +1,36 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}
+    Listar Funciones
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <h3 class="one">&nbsp;</h3>
+        </div>
+     </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Orden</th>
+            <th>Hora de la funcion</th>
+            <th>Local</th>
+            <th>Pelicula</th>
+            <th>Sala</th>
+           
+        </tr>
+        </thead>
+        <tbody>
+        {% for funcion in funciones %}
+            <tr>
+                <td>{{forloop.counter }}</td>
+                <td>{{funcion.hora_funcion }}</td>
+                <td>{{funcion.id_local}}</td>
+                <td>{{funcion.id_pelicula}}</td>
+                <td>{{funcion.id_sala}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

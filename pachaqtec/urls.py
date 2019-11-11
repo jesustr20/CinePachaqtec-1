@@ -18,11 +18,14 @@ from django.urls import path, include
 from apps.cine.views import Home
 from django.contrib.auth import views as auth_views
 from apps.authentication.views import Login
+from django.conf.urls.static import static
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Home.as_view(), name='index'),
+    path('', login_required(Home.as_view()), name='index'),
     path('cine/', include(('apps.cine.urls', 'cine'))),
     path('logout/',auth_views.LogoutView.as_view(), name='logout'),
     path('login/', Login.as_view(), name='login'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
